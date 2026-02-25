@@ -47,6 +47,50 @@ body {
   min-height: 100vh;
 }
 
+/* DISCLAIMER BANNER */
+.disclaimer-banner {
+  background: rgba(255,248,225,0.04);
+  border-bottom: 1px solid rgba(249,168,37,0.15);
+  padding: 0;
+  overflow: hidden;
+}
+.disclaimer-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  font-size: 0.78rem;
+  color: #d4a843;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.05em;
+  transition: background 0.2s;
+  user-select: none;
+}
+.disclaimer-toggle:hover { background: rgba(255,248,225,0.04); }
+.disclaimer-toggle .arrow { transition: transform 0.3s; font-size: 0.65rem; }
+.disclaimer-toggle .arrow.open { transform: rotate(180deg); }
+.disclaimer-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0 1.5rem;
+}
+.disclaimer-body.open {
+  max-height: 500px;
+  padding: 0 1.5rem 1.25rem;
+}
+.disclaimer-body-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: #9a8e70;
+}
+.disclaimer-body-inner p { margin-bottom: 0.5rem; }
+.disclaimer-body-inner p:last-child { margin-bottom: 0; }
+
 /* HERO */
 .hero {
   position: relative;
@@ -449,6 +493,24 @@ a.path-step.success:hover { color: var(--accent); }
 </head>
 <body>
 
+<!-- DISCLAIMER BANNER AT VERY TOP -->
+<div class="disclaimer-banner">
+  <div class="disclaimer-toggle" onclick="toggleDisclaimer()">
+    <span>&#9888;&#65039;</span>
+    <span>Important Disclaimer</span>
+    <span class="arrow" id="disc-arrow">&#9660;</span>
+  </div>
+  <div class="disclaimer-body" id="disc-body">
+    <div class="disclaimer-body-inner">
+      <p>These study resources are provided free of charge for educational purposes only. They are intended as supplemental study aids and should not be used as a substitute for your course textbooks, lecture materials, or the guidance of your instructors.</p>
+      <p>While every effort has been made to ensure accuracy, this content may contain errors, omissions, or information that is out of date. Science is constantly evolving, and material that was accurate at the time of writing may no longer reflect current understanding. Always verify important facts, formulas, and concepts against your official course materials.</p>
+      <p>No guarantees are made regarding the completeness, accuracy, or reliability of any information presented on these sites. Use at your own discretion. If you spot an error, we appreciate you letting us know so it can be corrected.</p>
+      <p>These materials are not affiliated with, endorsed by, or officially connected to any university, college, testing organization, or textbook publisher. All content represents the independent work and ideas of the author.</p>
+      <p>This resource is provided "as is" without warranty of any kind, express or implied. The author assumes no liability for any errors or for any actions taken based on the information provided here.</p>
+    </div>
+  </div>
+</div>
+
 <!-- HERO -->
 <div class="hero">
   <div class="hero-badge">Free &amp; Open Study Resources</div>
@@ -541,6 +603,16 @@ a.path-step.success:hover { color: var(--accent); }
         <a href="https://rpg007-github.github.io/Biology-lab-basics/" target="_blank" class="path-step bio">Biology Lab Basics</a>
         <a href="https://rpg007-github.github.io/chemistry/" target="_blank" class="path-step chem">General Chemistry I</a>
         <a href="https://rpg007-github.github.io/Basic-Molarity-Osmolarity-Dilutions/" target="_blank" class="path-step chem">Molarity, Osmolarity, and Dilutions</a>
+      </div>
+    </div>
+    <div class="path-card">
+      <h4>I am Pre-Med or Upper Division</h4>
+      <p>Building toward the MCAT or taking advanced courses? These go deeper.</p>
+      <div class="path-steps">
+        <a href="https://rpg007-github.github.io/Biochemistry/" target="_blank" class="path-step bio">Biochemistry</a>
+        <a href="https://rpg007-github.github.io/Organic-I/" target="_blank" class="path-step chem">Organic Chemistry I</a>
+        <a href="https://rpg007-github.github.io/Organic-II/" target="_blank" class="path-step chem">Organic Chemistry II</a>
+        <a href="https://rpg007-github.github.io/Finding-YOUR-Path/" target="_blank" class="path-step success">Finding YOUR Path (career planning)</a>
       </div>
     </div>
     <div class="path-card">
@@ -699,6 +771,24 @@ a.path-step.success:hover { color: var(--accent); }
   </div>
 
   <div class="section-header" style="margin-top:2rem;">
+    <h2 style="font-size:1.2rem;">Upper Division</h2>
+  </div>
+
+  <div class="card-grid">
+    <a href="https://rpg007-github.github.io/Biochemistry/" target="_blank" class="card bio">
+      <div class="card-icon bio">&#129516;</div>
+      <h3>Biochemistry</h3>
+      <p>Amino acids and protein structure, enzymes and kinetics, carbohydrates, lipids and membranes, glycolysis, TCA cycle, oxidative phosphorylation, fat metabolism, and metabolic integration. Every section includes worked examples with step-by-step reasoning.</p>
+      <div class="card-tags">
+        <span class="tag tag-quiz">30 Questions</span>
+        <span class="tag tag-flash">55 Flashcards</span>
+        <span class="tag tag-sa">8 Short Answer</span>
+      </div>
+      <span class="card-arrow">&#8594;</span>
+    </a>
+  </div>
+
+  <div class="section-header" style="margin-top:2rem;">
     <h2 style="font-size:1.2rem;">Labs</h2>
   </div>
 
@@ -759,7 +849,7 @@ a.path-step.success:hover { color: var(--accent); }
   <div class="section-header">
     <div class="section-tag" style="color:var(--amber);">Chemistry</div>
     <h2>Chemistry Study Guides</h2>
-    <p>Reference guides for general chemistry courses, from non-majors through Gen Chem I and II.</p>
+    <p>Reference guides for general chemistry courses, from non-majors through Gen Chem I and II, plus organic chemistry and biochemistry.</p>
   </div>
 
   <div class="card-grid">
@@ -807,6 +897,42 @@ a.path-step.success:hover { color: var(--accent); }
         <span class="tag tag-quiz">Quiz</span>
         <span class="tag tag-flash">Flashcards</span>
         <span class="tag tag-sa">Short Answer</span>
+      </div>
+      <span class="card-arrow">&#8594;</span>
+    </a>
+
+    <a href="https://rpg007-github.github.io/Organic-I/" target="_blank" class="card chem">
+      <div class="card-icon chem">&#9878;&#65039;</div>
+      <h3>Organic Chemistry I</h3>
+      <p>Functional groups, nomenclature, stereochemistry, reaction mechanisms (SN1, SN2, E1, E2), and foundational organic reaction types.</p>
+      <div class="card-tags">
+        <span class="tag tag-quiz">Quiz</span>
+        <span class="tag tag-flash">Flashcards</span>
+        <span class="tag tag-sa">Short Answer</span>
+      </div>
+      <span class="card-arrow">&#8594;</span>
+    </a>
+
+    <a href="https://rpg007-github.github.io/Organic-II/" target="_blank" class="card chem">
+      <div class="card-icon chem">&#9878;&#65039;</div>
+      <h3>Organic Chemistry II</h3>
+      <p>Carbonyl chemistry, carboxylic acid derivatives, aromatic reactions, spectroscopy, and multi-step synthesis strategies.</p>
+      <div class="card-tags">
+        <span class="tag tag-quiz">Quiz</span>
+        <span class="tag tag-flash">Flashcards</span>
+        <span class="tag tag-sa">Short Answer</span>
+      </div>
+      <span class="card-arrow">&#8594;</span>
+    </a>
+
+    <a href="https://rpg007-github.github.io/Biochemistry/" target="_blank" class="card chem">
+      <div class="card-icon chem">&#129516;</div>
+      <h3>Biochemistry</h3>
+      <p>Amino acids, enzymes, carbohydrates, lipids, glycolysis, TCA cycle, oxidative phosphorylation, fat metabolism, and metabolic integration. Includes worked examples throughout.</p>
+      <div class="card-tags">
+        <span class="tag tag-quiz">30 Questions</span>
+        <span class="tag tag-flash">55 Flashcards</span>
+        <span class="tag tag-sa">8 Short Answer</span>
       </div>
       <span class="card-arrow">&#8594;</span>
     </a>
@@ -870,6 +996,7 @@ a.path-step.success:hover { color: var(--accent); }
     <div class="section-tag" style="color:var(--teal);">Biology</div>
   </div>
   <div class="card-grid">
+    <a href="https://rpg007-github.github.io/Biochemistry/" target="_blank" class="card bio"><h3>Biochemistry</h3><p>Amino acids, enzymes, metabolism, worked examples.</p><span class="card-arrow">&#8594;</span></a>
     <a href="https://rpg007-github.github.io/Biodiversity/" target="_blank" class="card bio"><h3>Biodiversity</h3><p>Diversity of life, classification, ecology.</p><span class="card-arrow">&#8594;</span></a>
     <a href="https://rpg007-github.github.io/Bio-II-lab/" target="_blank" class="card bio"><h3>Biology II Lab</h3><p>Advanced lab learning modules.</p><span class="card-arrow">&#8594;</span></a>
     <a href="https://rpg007-github.github.io/Biology-basics/" target="_blank" class="card bio"><h3>Biology Basics (Bio I)</h3><p>Introductory biology for majors.</p><span class="card-arrow">&#8594;</span></a>
@@ -891,6 +1018,7 @@ a.path-step.success:hover { color: var(--accent); }
   </div>
   <div class="card-grid">
     <a href="https://rpg007-github.github.io/Basic-Molarity-Osmolarity-Dilutions/" target="_blank" class="card chem"><h3>Molarity, Osmolarity, Dilutions</h3><p>Concentration calculations and applications.</p><span class="card-arrow">&#8594;</span></a>
+    <a href="https://rpg007-github.github.io/Biochemistry/" target="_blank" class="card chem"><h3>Biochemistry</h3><p>Amino acids, enzymes, metabolism, worked examples.</p><span class="card-arrow">&#8594;</span></a>
     <a href="https://rpg007-github.github.io/chemistry/" target="_blank" class="card chem"><h3>General Chemistry I</h3><p>Atoms, bonding, reactions, stoichiometry.</p><span class="card-arrow">&#8594;</span></a>
     <a href="https://rpg007-github.github.io/Chemistry-for-non-majors/" target="_blank" class="card chem"><h3>Chemistry for Non-Majors</h3><p>Conceptual chemistry for gen ed.</p><span class="card-arrow">&#8594;</span></a>
     <a href="https://rpg007-github.github.io/General-Chemistry-II/" target="_blank" class="card chem"><h3>General Chemistry II</h3><p>Kinetics, equilibrium, electrochemistry.</p><span class="card-arrow">&#8594;</span></a>
@@ -917,7 +1045,8 @@ a.path-step.success:hover { color: var(--accent); }
 </div>
 
 <div class="footer">
-  Built to help students succeed. All resources are free and open access.
+  Free and open educational resources. No login required. No data collected.<br>
+  Not affiliated with or endorsed by any university, testing organization, or textbook publisher.
 </div>
 
 <script>
@@ -928,13 +1057,13 @@ function showSection(id) {
   event.currentTarget.classList.add('active');
   window.scrollTo({ top: document.querySelector('.nav-bar').offsetTop, behavior: 'smooth' });
 }
-</script><div style="max-width: 800px; margin: 40px auto; padding: 20px 30px; background: #fff8e1; border-left: 4px solid #f9a825; border-radius: 8px; font-size: 14px; line-height: 1.6; color: #555;">
-  <div style="font-weight: bold; font-size: 15px; margin-bottom: 10px;">⚠️ Important Notice</div>
-  <p style="margin: 0 0 10px 0;">These study resources are provided free of charge for educational purposes only. They are intended as supplemental study aids and should not be used as a substitute for your course textbooks, lecture materials, or the guidance of your instructors.</p>
-  <p style="margin: 0 0 10px 0;">While every effort has been made to ensure accuracy, this content may contain errors, omissions, or information that is out of date. Science is constantly evolving, and material that was accurate at the time of writing may no longer reflect current understanding. Always verify important facts, formulas, and concepts against your official course materials.</p>
-  <p style="margin: 0 0 10px 0;">No guarantees are made regarding the completeness, accuracy, or reliability of any information presented on these sites. Use at your own discretion. If you spot an error, we appreciate you letting us know so it can be corrected.</p>
-  <p style="margin: 0 0 10px 0;">These materials are not affiliated with, endorsed by, or officially connected to any university, college, testing organization, or textbook publisher. All content represents the independent work and ideas of the author.</p>
-  <p style="margin: 0;">This resource is provided "as is" without warranty of any kind, express or implied. The author assumes no liability for any errors or for any actions taken based on the information provided here.</p>
-</div>
+
+function toggleDisclaimer() {
+  const body = document.getElementById('disc-body');
+  const arrow = document.getElementById('disc-arrow');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+</script>
 </body>
 </html>
