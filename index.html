@@ -542,13 +542,44 @@ a.path-step.prehealth:hover { color: var(--coral); }
 .card:nth-child(4) { animation-delay: 0.15s; }
 .card:nth-child(5) { animation-delay: 0.2s; }
 .card:nth-child(6) { animation-delay: 0.25s; }
+
+/* ─── WCAG 2.1 AA: Visible focus indicators ─── */
+:focus-visible {
+  outline: 3px solid #005fcc !important;
+  outline-offset: 2px !important;
+}
+.tab-btn:focus-visible, .nav-btn:focus-visible {
+  outline: 3px solid #005fcc !important;
+  outline-offset: 2px !important;
+}
+/* ─── Skip link ─── */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: #005fcc;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0 0 6px 6px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  z-index: 9999;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 
 <!-- DISCLAIMER -->
 <div class="disclaimer-banner">
-  <div class="disclaimer-toggle" onclick="toggleDisclaimer()">
+  <div class="disclaimer-toggle" onclick="toggleDisclaimer()" role="button" tabindex="0" aria-expanded="false" aria-controls="disc-body" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleDisclaimer();}">
     <span>&#9888;&#65039;</span>
     <span>Important Disclaimer</span>
     <span class="arrow" id="disc-arrow">&#9660;</span>
@@ -577,19 +608,19 @@ a.path-step.prehealth:hover { color: var(--coral); }
 </div>
 
 <!-- NAV -->
-<div class="nav-bar">
-  <button class="nav-btn active" onclick="showSection('start', this)">Start Here</button>
-  <button class="nav-btn" onclick="showSection('success', this)">College Success</button>
-  <button class="nav-btn" onclick="showSection('bio', this)">Biology</button>
-  <button class="nav-btn" onclick="showSection('chem', this)">Chemistry</button>
-  <button class="nav-btn" onclick="showSection('math', this)">Math &amp; Physics</button>
-  <button class="nav-btn" onclick="showSection('all', this)">All Resources</button>
+<div class="nav-bar" role="tablist" aria-label="Page sections">
+  <button role="tab" aria-selected="true" aria-controls="sec-start" class="nav-btn active" onclick="showSection('start', this)">Start Here</button>
+  <button role="tab" aria-selected="false" aria-controls="sec-success" class="nav-btn" onclick="showSection('success', this)">College Success</button>
+  <button role="tab" aria-selected="false" aria-controls="sec-bio" class="nav-btn" onclick="showSection('bio', this)">Biology</button>
+  <button role="tab" aria-selected="false" aria-controls="sec-chem" class="nav-btn" onclick="showSection('chem', this)">Chemistry</button>
+  <button role="tab" aria-selected="false" aria-controls="sec-math" class="nav-btn" onclick="showSection('math', this)">Math &amp; Physics</button>
+  <button role="tab" aria-selected="false" aria-controls="sec-all" class="nav-btn" onclick="showSection('all', this)">All Resources</button>
 </div>
 
-<div class="container">
+<div class="container" id="main-content" role="main">
 
 <!-- ========== START HERE ========== -->
-<div class="guide-section active" id="sec-start">
+<div class="guide-section active" id="sec-start" role="tabpanel">
 
   <div class="section-header">
     <div class="section-tag" style="color:var(--accent);">Welcome</div>
@@ -684,22 +715,22 @@ a.path-step.prehealth:hover { color: var(--coral); }
 
   <div class="feature-row">
     <div class="feature-box">
-      <div class="feature-icon">&#128218;</div>
+      <div class="feature-icon"><span aria-hidden="true">&#128218;</span></div>
       <h4>Content Sections</h4>
       <p>Organized reference material with fact tables, formula callouts, and key concept highlights. Written to be concise, not exhaustive.</p>
     </div>
     <div class="feature-box">
-      <div class="feature-icon">&#9989;</div>
+      <div class="feature-icon"><span aria-hidden="true">&#9989;</span></div>
       <h4>Multiple Choice Quiz</h4>
       <p>20 to 75 questions with immediate feedback, detailed explanations, and a running score tracker.</p>
     </div>
     <div class="feature-box">
-      <div class="feature-icon">&#128196;</div>
+      <div class="feature-icon"><span aria-hidden="true">&#128196;</span></div>
       <h4>Flashcards</h4>
       <p>50+ cards with flip animations. Filter by category to focus on specific topics.</p>
     </div>
     <div class="feature-box">
-      <div class="feature-icon">&#9997;&#65039;</div>
+      <div class="feature-icon"><span aria-hidden="true">&#9997;&#65039;</span></div>
       <h4>Short Answer Practice</h4>
       <p>Type your answer and get graded on which key concepts you included, with a model answer to compare against.</p>
     </div>
@@ -707,7 +738,7 @@ a.path-step.prehealth:hover { color: var(--coral); }
 </div>
 
 <!-- ========== COLLEGE SUCCESS ========== -->
-<div class="guide-section" id="sec-success">
+<div class="guide-section" id="sec-success" role="tabpanel">
 
   <div class="section-header">
     <div class="section-tag" style="color:var(--accent);">College Success</div>
@@ -725,7 +756,7 @@ a.path-step.prehealth:hover { color: var(--coral); }
   <div class="card-grid">
     <a href="https://rpg007-github.github.io/Finding-your-way-in-College/" target="_blank" class="card every">
       <div class="card-audience every">Every College Student</div>
-      <div class="card-icon every">&#129517;</div>
+      <div class="card-icon every"><span aria-hidden="true">&#129517;</span></div>
       <h3>Finding Your Way in College</h3>
       <p>A comprehensive guide for students trying to figure out their major and career direction. Covers self-assessment frameworks like the Holland Code, how college majors map to real careers, practical steps for exploration (informational interviews, job shadowing, internships), honest guidance on changing your major, and how to find and use mentors. Built for undecided students, conflicted students, and students who feel pressure to follow a path that may not be right for them.</p>
       <div class="card-tags">
@@ -738,7 +769,7 @@ a.path-step.prehealth:hover { color: var(--coral); }
 
     <a href="https://rpg007-github.github.io/Getting-better/" target="_blank" class="card skills">
       <div class="card-audience skills">Every College Student</div>
-      <div class="card-icon skills">&#127793;</div>
+      <div class="card-icon skills"><span aria-hidden="true">&#127793;</span></div>
       <h3>Getting Better</h3>
       <p>A no-judgment guide for students navigating the transition to college-level work. Covers evidence-based study strategies, managing academic anxiety, digital wellness, social confidence, and personal accountability. Especially useful for students who feel like everyone else has it figured out and they do not. Built around the understanding that many struggles in college are exposure gaps, not ability gaps.</p>
       <div class="card-tags">
@@ -760,7 +791,7 @@ a.path-step.prehealth:hover { color: var(--coral); }
   <div class="card-grid">
     <a href="https://rpg007-github.github.io/Finding-YOUR-Path/" target="_blank" class="card prehealth">
       <div class="card-audience prehealth">Pre-Med, Pre-PA, Pre-PhD</div>
-      <div class="card-icon prehealth">&#128204;</div>
+      <div class="card-icon prehealth"><span aria-hidden="true">&#128204;</span></div>
       <h3>Finding YOUR Path</h3>
       <p>An in-depth interactive guide for students exploring MD, DO, PA, and biomedical graduate school. Includes real AAMC acceptance rate data by GPA and MCAT score, honest comparisons of each career path, a stage-by-stage preparation timeline from freshman year through application, guidance on personal statements and letters of recommendation, and a frank discussion of what each path actually requires in terms of time, money, and commitment. Whether you are certain about your direction or still deciding, this will help you make a real plan.</p>
       <div class="card-tags">
@@ -779,7 +810,7 @@ a.path-step.prehealth:hover { color: var(--coral); }
 </div>
 
 <!-- ========== BIOLOGY ========== -->
-<div class="guide-section" id="sec-bio">
+<div class="guide-section" id="sec-bio" role="tabpanel">
 
   <div class="section-header">
     <div class="section-tag" style="color:var(--teal);">Biology</div>
@@ -795,7 +826,7 @@ a.path-step.prehealth:hover { color: var(--coral); }
 
   <div class="card-grid">
     <a href="https://rpg007-github.github.io/Biology-for-non-majors/" target="_blank" class="card bio">
-      <div class="card-icon bio">&#127807;</div>
+      <div class="card-icon bio"><span aria-hidden="true">&#127807;</span></div>
       <h3>Biology for Non-Majors</h3>
       <p>Covers scientific method, chemistry of life, cells, energy, DNA and genetics, evolution, ecology, and human body systems. Written to explain why each concept matters in everyday life.</p>
       <div class="card-tags"><span class="tag tag-quiz">Quiz</span><span class="tag tag-flash">Flashcards</span><span class="tag tag-sa">Short Answer</span></div>
@@ -810,28 +841,28 @@ a.path-step.prehealth:hover { color: var(--coral); }
 
   <div class="card-grid">
     <a href="https://rpg007-github.github.io/Biology-basics/" target="_blank" class="card bio">
-      <div class="card-icon bio">&#127793;</div>
+      <div class="card-icon bio"><span aria-hidden="true">&#127793;</span></div>
       <h3>Biology Basics (Bio I)</h3>
       <p>Scientific method, biological molecules, cell structure, membranes, transport, energy, DNA replication, protein synthesis, cell division, genetics, evolution, and ecology.</p>
       <div class="card-tags"><span class="tag tag-quiz">Quiz</span><span class="tag tag-flash">Flashcards</span><span class="tag tag-sa">Short Answer</span></div>
       <span class="card-arrow">&#8594;</span>
     </a>
     <a href="https://rpg007-github.github.io/Biology-II/" target="_blank" class="card bio">
-      <div class="card-icon bio">&#127795;</div>
+      <div class="card-icon bio"><span aria-hidden="true">&#127795;</span></div>
       <h3>Biology II</h3>
       <p>Animal physiology, plant biology, ecology, phylogenetics, and diversity of life. Builds on the molecular and cellular foundations from Bio I.</p>
       <div class="card-tags"><span class="tag tag-quiz">Quiz</span><span class="tag tag-flash">Flashcards</span><span class="tag tag-sa">Short Answer</span></div>
       <span class="card-arrow">&#8594;</span>
     </a>
     <a href="https://rpg007-github.github.io/Water-molecule-fundamentals/" target="_blank" class="card bio">
-      <div class="card-icon bio">&#128167;</div>
+      <div class="card-icon bio"><span aria-hidden="true">&#128167;</span></div>
       <h3>Water: The Molecule Behind Everything</h3>
       <p>Molecular structure, hydrogen bonding, emergent properties, ice density, pH and buffers, water in biological reactions.</p>
       <div class="card-tags"><span class="tag tag-quiz">Quiz</span><span class="tag tag-flash">Flashcards</span><span class="tag tag-sa">Short Answer</span></div>
       <span class="card-arrow">&#8594;</span>
     </a>
     <a href="https://rpg007-github.github.io/DNA-basics/" target="_blank" class="card bio">
-      <div class="card-icon bio">&#129516;</div>
+      <div class="card-icon bio"><span aria-hidden="true">&#129516;</span></div>
       <h3>DNA Basics</h3>
       <p>DNA structure, replication, base pairing, central dogma, transcription, translation, and mutations.</p>
       <div class="card-tags"><span class="tag tag-quiz">Quiz</span><span class="tag tag-flash">Flashcards</span><span class="tag tag-sa">Short Answer</span></div>
@@ -846,7 +877,7 @@ a.path-step.prehealth:hover { color: var(--coral); }
 
   <div class="card-grid">
     <a href="https://rpg007-github.github.io/Biochemistry/" target="_blank" class="card bio">
-      <div class="card-icon bio">&#129516;</div>
+      <div class="card-icon bio"><span aria-hidden="true">&#129516;</span></div>
       <h3>Biochemistry</h3>
       <p>Amino acids and protein structure, enzymes and kinetics, carbohydrates, lipids and membranes, glycolysis, TCA cycle, oxidative phosphorylation, fat metabolism, and metabolic integration. Every section includes worked examples with step-by-step reasoning.</p>
       <div class="card-tags"><span class="tag tag-quiz">30 Questions</span><span class="tag tag-flash">55 Flashcards</span><span class="tag tag-sa">8 Short Answer</span></div>
@@ -861,28 +892,28 @@ a.path-step.prehealth:hover { color: var(--coral); }
 
   <div class="card-grid">
     <a href="https://rpg007-github.github.io/Biology-LAB/" target="_blank" class="card bio">
-      <div class="card-icon bio">&#128300;</div>
+      <div class="card-icon bio"><span aria-hidden="true">&#128300;</span></div>
       <h3>Biology Lab</h3>
       <p>Lab techniques, microscopy, biochemistry experiments, diffusion and osmosis, enzyme kinetics, photosynthesis and respiration labs, mitosis, genetics crosses, DNA extraction, and ecological surveys.</p>
       <div class="card-tags"><span class="tag tag-quiz">Quiz</span><span class="tag tag-flash">Flashcards</span><span class="tag tag-sa">Short Answer</span></div>
       <span class="card-arrow">&#8594;</span>
     </a>
     <a href="https://rpg007-github.github.io/Biology-lab-basics/" target="_blank" class="card bio">
-      <div class="card-icon bio">&#129514;</div>
+      <div class="card-icon bio"><span aria-hidden="true">&#129514;</span></div>
       <h3>Biology Lab Basics</h3>
       <p>Measurement, safety protocols, microscope operation, solution preparation, data recording, and basic statistical analysis.</p>
       <div class="card-tags"><span class="tag tag-quiz">Quiz</span><span class="tag tag-flash">Flashcards</span><span class="tag tag-sa">Short Answer</span></div>
       <span class="card-arrow">&#8594;</span>
     </a>
     <a href="https://rpg007-github.github.io/Bio-II-lab/" target="_blank" class="card bio">
-      <div class="card-icon bio">&#128300;</div>
+      <div class="card-icon bio"><span aria-hidden="true">&#128300;</span></div>
       <h3>Biology II Lab</h3>
       <p>Advanced laboratory learning modules for Biology II.</p>
       <div class="card-tags"><span class="tag tag-quiz">Quiz</span><span class="tag tag-flash">Flashcards</span><span class="tag tag-sa">Short Answer</span></div>
       <span class="card-arrow">&#8594;</span>
     </a>
     <a href="https://rpg007-github.github.io/Biodiversity/" target="_blank" class="card bio">
-      <div class="card-icon bio">&#127758;</div>
+      <div class="card-icon bio"><span aria-hidden="true">&#127758;</span></div>
       <h3>Biodiversity</h3>
       <p>Diversity of life, classification, and ecological relationships.</p>
       <div class="card-tags"><span class="tag tag-quiz">Quiz</span><span class="tag tag-flash">Flashcards</span><span class="tag tag-sa">Short Answer</span></div>
@@ -892,7 +923,7 @@ a.path-step.prehealth:hover { color: var(--coral); }
 </div>
 
 <!-- ========== CHEMISTRY ========== -->
-<div class="guide-section" id="sec-chem">
+<div class="guide-section" id="sec-chem" role="tabpanel">
 
   <div class="section-header">
     <div class="section-tag" style="color:var(--amber);">Chemistry</div>
@@ -902,49 +933,49 @@ a.path-step.prehealth:hover { color: var(--coral); }
 
   <div class="card-grid">
     <a href="https://rpg007-github.github.io/Chemistry-for-non-majors/" target="_blank" class="card chem">
-      <div class="card-icon chem">&#127773;</div>
+      <div class="card-icon chem"><span aria-hidden="true">&#127773;</span></div>
       <h3>Chemistry for Non-Majors</h3>
       <p>Conceptual chemistry with less mathematical rigor. Covers matter, atomic structure, the periodic table, bonding, nomenclature, reactions, the mole concept, gas laws, solutions, acids and bases, and nuclear chemistry.</p>
       <div class="card-tags"><span class="tag tag-quiz">75 Questions</span><span class="tag tag-flash">Flashcards</span><span class="tag tag-sa">Short Answer</span></div>
       <span class="card-arrow">&#8594;</span>
     </a>
     <a href="https://rpg007-github.github.io/chemistry/" target="_blank" class="card chem">
-      <div class="card-icon chem">&#9878;&#65039;</div>
+      <div class="card-icon chem"><span aria-hidden="true">&#9878;&#65039;</span></div>
       <h3>General Chemistry I</h3>
       <p>Atomic structure, periodic trends, chemical bonding, Lewis structures, VSEPR theory, nomenclature, reaction types, stoichiometry, gas laws, solution chemistry, and introductory thermochemistry.</p>
       <div class="card-tags"><span class="tag tag-quiz">Quiz</span><span class="tag tag-flash">Flashcards</span><span class="tag tag-sa">Short Answer</span></div>
       <span class="card-arrow">&#8594;</span>
     </a>
     <a href="https://rpg007-github.github.io/General-Chemistry-II/" target="_blank" class="card chem">
-      <div class="card-icon chem">&#9878;&#65039;</div>
+      <div class="card-icon chem"><span aria-hidden="true">&#9878;&#65039;</span></div>
       <h3>General Chemistry II</h3>
       <p>Kinetics, chemical equilibrium, acids and bases, buffers, solubility equilibria, thermodynamics, electrochemistry, nuclear chemistry, and coordination chemistry.</p>
       <div class="card-tags"><span class="tag tag-quiz">Quiz</span><span class="tag tag-flash">Flashcards</span><span class="tag tag-sa">Short Answer</span></div>
       <span class="card-arrow">&#8594;</span>
     </a>
     <a href="https://rpg007-github.github.io/Basic-Molarity-Osmolarity-Dilutions/" target="_blank" class="card chem">
-      <div class="card-icon chem">&#129514;</div>
+      <div class="card-icon chem"><span aria-hidden="true">&#129514;</span></div>
       <h3>Molarity, Osmolarity, and Dilutions</h3>
       <p>Focused module on concentration calculations: molarity, molality, osmolarity, dilution equations, percent solutions, and practical applications in biology and medicine.</p>
       <div class="card-tags"><span class="tag tag-quiz">Quiz</span><span class="tag tag-flash">Flashcards</span><span class="tag tag-sa">Short Answer</span></div>
       <span class="card-arrow">&#8594;</span>
     </a>
     <a href="https://rpg007-github.github.io/Organic-I/" target="_blank" class="card chem">
-      <div class="card-icon chem">&#9878;&#65039;</div>
+      <div class="card-icon chem"><span aria-hidden="true">&#9878;&#65039;</span></div>
       <h3>Organic Chemistry I</h3>
       <p>Functional groups, nomenclature, stereochemistry, reaction mechanisms (SN1, SN2, E1, E2), and foundational organic reaction types.</p>
       <div class="card-tags"><span class="tag tag-quiz">Quiz</span><span class="tag tag-flash">Flashcards</span><span class="tag tag-sa">Short Answer</span></div>
       <span class="card-arrow">&#8594;</span>
     </a>
     <a href="https://rpg007-github.github.io/Organic-II/" target="_blank" class="card chem">
-      <div class="card-icon chem">&#9878;&#65039;</div>
+      <div class="card-icon chem"><span aria-hidden="true">&#9878;&#65039;</span></div>
       <h3>Organic Chemistry II</h3>
       <p>Carbonyl chemistry, carboxylic acid derivatives, aromatic reactions, spectroscopy, and multi-step synthesis strategies.</p>
       <div class="card-tags"><span class="tag tag-quiz">Quiz</span><span class="tag tag-flash">Flashcards</span><span class="tag tag-sa">Short Answer</span></div>
       <span class="card-arrow">&#8594;</span>
     </a>
     <a href="https://rpg007-github.github.io/Biochemistry/" target="_blank" class="card chem">
-      <div class="card-icon chem">&#129516;</div>
+      <div class="card-icon chem"><span aria-hidden="true">&#129516;</span></div>
       <h3>Biochemistry</h3>
       <p>Amino acids, enzymes, carbohydrates, lipids, glycolysis, TCA cycle, oxidative phosphorylation, fat metabolism, and metabolic integration. Includes worked examples throughout.</p>
       <div class="card-tags"><span class="tag tag-quiz">30 Questions</span><span class="tag tag-flash">55 Flashcards</span><span class="tag tag-sa">8 Short Answer</span></div>
@@ -954,7 +985,7 @@ a.path-step.prehealth:hover { color: var(--coral); }
 </div>
 
 <!-- ========== MATH & PHYSICS ========== -->
-<div class="guide-section" id="sec-math">
+<div class="guide-section" id="sec-math" role="tabpanel">
 
   <div class="section-header">
     <div class="section-tag" style="color:var(--purple);">Math &amp; Physics</div>
@@ -964,14 +995,14 @@ a.path-step.prehealth:hover { color: var(--coral); }
 
   <div class="card-grid">
     <a href="https://rpg007-github.github.io/College-Algebra/" target="_blank" class="card math">
-      <div class="card-icon math">&#128202;</div>
+      <div class="card-icon math"><span aria-hidden="true">&#128202;</span></div>
       <h3>College Algebra</h3>
       <p>Equations, functions and graphs, quadratic functions, exponential and logarithmic functions, polynomial and rational functions, domain and range, transformations, composite and inverse functions. Written with worked examples and step-by-step explanations.</p>
       <div class="card-tags"><span class="tag tag-quiz">Quiz</span><span class="tag tag-flash">Flashcards</span><span class="tag tag-sa">Short Answer</span></div>
       <span class="card-arrow">&#8594;</span>
     </a>
     <a href="https://rpg007-github.github.io/Physics-I-basics/" target="_blank" class="card physics">
-      <div class="card-icon physics">&#9889;</div>
+      <div class="card-icon physics"><span aria-hidden="true">&#9889;</span></div>
       <h3>Physics I Basics</h3>
       <p>Introductory physics covering mechanics, kinematics, Newton's laws, work and energy, momentum, rotational motion, and introductory thermodynamics. Includes key equations and problem-solving frameworks.</p>
       <div class="card-tags"><span class="tag tag-quiz">Quiz</span><span class="tag tag-flash">Flashcards</span><span class="tag tag-sa">Short Answer</span></div>
@@ -981,7 +1012,7 @@ a.path-step.prehealth:hover { color: var(--coral); }
 </div>
 
 <!-- ========== ALL RESOURCES ========== -->
-<div class="guide-section" id="sec-all">
+<div class="guide-section" id="sec-all" role="tabpanel">
 
   <div class="section-header">
     <div class="section-tag" style="color:var(--accent);">Complete Index</div>
@@ -1079,15 +1110,19 @@ a.path-step.prehealth:hover { color: var(--coral); }
 function showSection(id, btn) {
   document.querySelectorAll('.guide-section').forEach(s => s.classList.remove('active'));
   document.getElementById('sec-' + id).classList.add('active');
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
   btn.classList.add('active');
+  btn.setAttribute('aria-selected','true');
   window.scrollTo({ top: document.querySelector('.nav-bar').offsetTop, behavior: 'smooth' });
 }
 function toggleDisclaimer() {
   const body = document.getElementById('disc-body');
   const arrow = document.getElementById('disc-arrow');
+  const toggle = document.querySelector('.disclaimer-toggle');
   body.classList.toggle('open');
   arrow.classList.toggle('open');
+  const isOpen = body.classList.contains('open');
+  toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 }
 </script>
 </body>
